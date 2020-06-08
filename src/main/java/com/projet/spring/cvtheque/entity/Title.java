@@ -21,43 +21,68 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import lombok.Data;
 
 @Entity
-@Table(name="title")
+@Table(name="Titles")
 @Data
 @EntityListeners(AuditingEntityListener.class)
 public class Title {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="title_id")
+	@Column(name="TitleID")
 	private int titleId;
 	
-	@Column(name="description")
+	@Column(name="Description")
 	private String descrition;
 	
+	//Relation entre Title et Profile pour genener la table education
 	@ManyToMany(fetch = FetchType.LAZY ,
 			cascade = { CascadeType.PERSIST,CascadeType.MERGE,
 					CascadeType.DETACH,CascadeType.REFRESH
 			})
-@JoinTable(
-		name="education",
-		joinColumns = @JoinColumn(name="education_title_id"),
-		inverseJoinColumns = @JoinColumn(name ="profile_id")
+	@JoinTable(
+		name="Education",
+		joinColumns = @JoinColumn(name="EducationTitleID"),
+		inverseJoinColumns = @JoinColumn(name ="ProfileID")
 
 		)
 	private List<Profile> profilesEducation;
 	
 	
-	
+	//Relation entre Title et Profile pour genener la table trainCertif
 	@ManyToMany(fetch = FetchType.LAZY ,
 			cascade = { CascadeType.PERSIST,CascadeType.MERGE,
 					CascadeType.DETACH,CascadeType.REFRESH
 			})
-@JoinTable(
-		name="trainCertif",
-		joinColumns = @JoinColumn(name="train_certif_title_id"),
-		inverseJoinColumns = @JoinColumn(name="profile_id"))
+	@JoinTable(
+		name="TrainCertif",
+		joinColumns = @JoinColumn(name="TrainCertifTitleID"),
+		inverseJoinColumns = @JoinColumn(name="ProfileID"))
 	private List<Profile> profilesTrainCertif;
 	
+	
+	//Relation entre Title et Profile pour genener la table hobby
+	@ManyToMany(fetch = FetchType.LAZY ,
+			cascade = { CascadeType.PERSIST,CascadeType.MERGE,
+					CascadeType.DETACH,CascadeType.REFRESH
+			})
+	@JoinTable(
+		name="Hobbies",
+		joinColumns = @JoinColumn(name="HobbyTitleID"),
+		inverseJoinColumns = @JoinColumn(name="ProfileID")
+		)
+	private List<Profile> profilesHobby;
+	
+	//Relation entre Title et CVLanguage
+	@ManyToMany(fetch = FetchType.LAZY ,
+			cascade = { CascadeType.PERSIST,CascadeType.MERGE,
+					CascadeType.DETACH,CascadeType.REFRESH
+			})
+	@JoinTable(
+		name="Hobbies",
+		joinColumns = @JoinColumn(name="HobbyTitleID"),
+		inverseJoinColumns = @JoinColumn(name="CVLanguageID")
+		)
+	private List<CVLanguage>cvLanguages;
 
 	
 }
