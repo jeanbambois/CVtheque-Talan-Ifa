@@ -35,6 +35,7 @@ public class Language {
 	@OneToMany(mappedBy="language", cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
 	private List<LanguageFluency> languageFluencies;
 	
+<<<<<<< HEAD
 	//Relation entre Language et title
 	@OneToMany(mappedBy="language",cascade={CascadeType.PERSIST,CascadeType.DETACH,CascadeType.PERSIST,CascadeType.REFRESH})
 	private List<Title> titles;
@@ -45,6 +46,8 @@ public class Language {
 	
 	@OneToMany(mappedBy="language",cascade={CascadeType.PERSIST,CascadeType.DETACH,CascadeType.PERSIST,CascadeType.REFRESH})
 	private List<Task> tasks;
+=======
+>>>>>>> 963c4a7c2c2c6bb9369ef0c98ad10421aa57c139
 
 	
 }

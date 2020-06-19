@@ -39,17 +39,27 @@ public class ExperienceDescription {
 	@JoinColumn(name="PositionID")
 	private Position position;
 	
+<<<<<<< HEAD
 	
+=======
+	// Relation entre ExperienceDescription et CVLanguage
+	@ManyToOne(cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+	@JoinColumn(name="CVLanguageID")
+	private CVLanguage cvLanguage;
+>>>>>>> 963c4a7c2c2c6bb9369ef0c98ad10421aa57c139
 	
 	// Relation entre ExperienceDescription et ProExp
 		@ManyToOne(cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
 		@JoinColumn(name="ProExpID")
 		private ProExp proExp;
 	
+<<<<<<< HEAD
 	//relation entre ExperienceDescription et Language
 		@ManyToOne(fetch = FetchType.LAZY)
 		@JoinColumn(name="LanguageID")
 		private Language language; 
+=======
+>>>>>>> 963c4a7c2c2c6bb9369ef0c98ad10421aa57c139
 	
 	
 

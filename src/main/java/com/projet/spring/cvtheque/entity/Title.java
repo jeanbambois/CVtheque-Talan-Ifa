@@ -51,6 +51,7 @@ public class Title {
 	private List<Profile> profilesEducation;
 	
 	
+<<<<<<< HEAD
 	//Relation entre Title et Traincertif
 	
 	@OneToMany(mappedBy="title",cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
@@ -58,11 +59,15 @@ public class Title {
 	
 	
 	//Relation entre Title et Profile pour generer la table hobby
+=======
+	//Relation entre Title et Profile pour genener la table trainCertif
+>>>>>>> 963c4a7c2c2c6bb9369ef0c98ad10421aa57c139
 	@ManyToMany(fetch = FetchType.LAZY ,
 			cascade = { CascadeType.PERSIST,CascadeType.MERGE,
 					CascadeType.DETACH,CascadeType.REFRESH
 			})
 	@JoinTable(
+<<<<<<< HEAD
 		name="Hobbies",
 		joinColumns = @JoinColumn(name="HobbyTitleID"),
 		inverseJoinColumns = @JoinColumn(name="ProfileID")
@@ -74,7 +79,37 @@ public class Title {
 	@JoinColumn(name="LanguageID")
 	private Language language; 
 	
+=======
+		name="TrainCertif",
+		joinColumns = @JoinColumn(name="TrainCertifTitleID"),
+		inverseJoinColumns = @JoinColumn(name="ProfileID"))
+	private List<Profile> profilesTrainCertif;
+>>>>>>> 963c4a7c2c2c6bb9369ef0c98ad10421aa57c139
 	
+	
+	//Relation entre Title et Profile pour genener la table hobby
+	@ManyToMany(fetch = FetchType.LAZY ,
+			cascade = { CascadeType.PERSIST,CascadeType.MERGE,
+					CascadeType.DETACH,CascadeType.REFRESH
+			})
+	@JoinTable(
+		name="Hobbies",
+		joinColumns = @JoinColumn(name="HobbyTitleID"),
+		inverseJoinColumns = @JoinColumn(name="ProfileID")
+		)
+	private List<Profile> profilesHobby;
+	
+	//Relation entre Title et CVLanguage
+	@ManyToMany(fetch = FetchType.LAZY ,
+			cascade = { CascadeType.PERSIST,CascadeType.MERGE,
+					CascadeType.DETACH,CascadeType.REFRESH
+			})
+	@JoinTable(
+		name="Hobbies",
+		joinColumns = @JoinColumn(name="HobbyTitleID"),
+		inverseJoinColumns = @JoinColumn(name="CVLanguageID")
+		)
+	private List<CVLanguage>cvLanguages;
 
 	
 }

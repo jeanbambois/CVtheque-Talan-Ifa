@@ -15,6 +15,7 @@ import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 
 
+
 @SpringBootApplication
 @EnableJpaAuditing
 public class SpringBootCvthequeApplication {
@@ -23,7 +24,10 @@ public class SpringBootCvthequeApplication {
 		SpringApplication.run(SpringBootCvthequeApplication.class, args);
 	}
 	
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 963c4a7c2c2c6bb9369ef0c98ad10421aa57c139
 	/*@Bean
 	public CommandLineRunner commandLinerRunner(ProfileRepository profileRepository,CityRepository cityRepository,CountryRepository countryRepository,GenderRepository genderRepository,
 			ProExpRepository proExpRepository,CompanyRepository companyRepository,NationalityRepository nationalityRepository) {
