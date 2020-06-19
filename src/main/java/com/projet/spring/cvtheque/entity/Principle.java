@@ -21,27 +21,29 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import lombok.Data;
 
 @Entity
-@Table(name="principle")
+@Table(name="Principles")
 @Data
 @EntityListeners(AuditingEntityListener.class)
 public class Principle {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="principle_id")
+	@Column(name="PrincipleID")
 	private int principleId;
 	
-	@Column(name="name")
+	@Column(name="Name")
 	private String name;
 	
+	
+	//Relation entre  Principle et Technologie
 	@ManyToMany(fetch = FetchType.LAZY ,
 			cascade = { CascadeType.PERSIST,CascadeType.MERGE,
 					CascadeType.DETACH,CascadeType.REFRESH
 			})
 @JoinTable(
-		name="techprinciple",
-		joinColumns = @JoinColumn(name="principle_id"),
-		inverseJoinColumns = @JoinColumn(name="tech_id")
+		name="TechPrinciples",
+		joinColumns = @JoinColumn(name="PrincipleID"),
+		inverseJoinColumns = @JoinColumn(name="TechID")
 		)
 private List<Technologie> technologies;
 	

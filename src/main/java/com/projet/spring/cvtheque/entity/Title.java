@@ -2,6 +2,7 @@ package com.projet.spring.cvtheque.entity;
 
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -21,42 +24,56 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import lombok.Data;
 
 @Entity
-@Table(name="title")
+@Table(name="Titles")
 @Data
 @EntityListeners(AuditingEntityListener.class)
 public class Title {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="title_id")
+	@Column(name="TitleID")
 	private int titleId;
 	
-	@Column(name="description")
+	@Column(name="Description")
 	private String descrition;
 	
+	//Relation entre Title et Profile pour genener la table education
 	@ManyToMany(fetch = FetchType.LAZY ,
 			cascade = { CascadeType.PERSIST,CascadeType.MERGE,
 					CascadeType.DETACH,CascadeType.REFRESH
 			})
-@JoinTable(
-		name="education",
-		joinColumns = @JoinColumn(name="education_title_id"),
-		inverseJoinColumns = @JoinColumn(name ="profile_id")
+	@JoinTable(
+		name="Education",
+		joinColumns = @JoinColumn(name="EducationTitleID"),
+		inverseJoinColumns = @JoinColumn(name ="ProfileID")
 
 		)
 	private List<Profile> profilesEducation;
 	
 	
+	//Relation entre Title et Traincertif
 	
+	@OneToMany(mappedBy="title",cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+	private Set<TrainCertif> trainCertifs;
+	
+	
+	//Relation entre Title et Profile pour generer la table hobby
 	@ManyToMany(fetch = FetchType.LAZY ,
 			cascade = { CascadeType.PERSIST,CascadeType.MERGE,
 					CascadeType.DETACH,CascadeType.REFRESH
 			})
-@JoinTable(
-		name="trainCertif",
-		joinColumns = @JoinColumn(name="train_certif_title_id"),
-		inverseJoinColumns = @JoinColumn(name="profile_id"))
-	private List<Profile> profilesTrainCertif;
+	@JoinTable(
+		name="Hobbies",
+		joinColumns = @JoinColumn(name="HobbyTitleID"),
+		inverseJoinColumns = @JoinColumn(name="ProfileID")
+		)
+	private List<Profile> profilesHobby;
+	
+	//Relation entre Title et Language
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="LanguageID")
+	private Language language; 
+	
 	
 
 	

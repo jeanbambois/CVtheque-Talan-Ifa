@@ -4,14 +4,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-import com.projet.spring.cvtheque.entity.CVLanguage;
 
+import com.projet.spring.cvtheque.entity.LanguageFluency;
 
 
 
 
 
 @CrossOrigin("http://localhost:4200")
-public interface CVLanguageRepository extends JpaRepository<CVLanguage,Integer> {
+public interface LanguageFluencyRepository extends JpaRepository<LanguageFluency,Integer> {
 
 }
